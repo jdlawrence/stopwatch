@@ -1,6 +1,5 @@
 
 .stopwatch {
-  font-color: green;
   font-size: 24px;
 
   &__container {
@@ -15,5 +14,9 @@
   }
   &__button {
     font-size: 16px;
+  }
+
+  &__past-times {
+    margin-top: 15px;
   }
 }
