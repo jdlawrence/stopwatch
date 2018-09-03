@@ -12,7 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   display.innerHTML = '0';
 
-  startStop.addEventListener('click', () => {
+
+  const startStopEventHandler = () => {
     if (!timeStarted) {
       timeStarted = true;
 
@@ -25,19 +26,33 @@ document.addEventListener("DOMContentLoaded", () => {
       clearInterval(timerInterval);
       timeStarted = false;
     }
-  });
+  };
 
-  reset.addEventListener('click', () => {
+  const resetEventHandler = () => {
     clearInterval(timerInterval);
     timeStarted = false;
     timeAccumulated = 0;
     display.innerHTML = '0';
     pastTimes.innerHTML = 'Past Times';
-  });
+  };
 
-  record.addEventListener('click', () => {
+  const recordEventHandler = () => {
     displayTime = parseFloat(timeAccumulated / 1000).toFixed(2);
     pastTimes.innerHTML += `<div class="stopwatch__single-time">${ displayTime}</div>`;
+  };
+
+  startStop.addEventListener('click', startStopEventHandler);
+  reset.addEventListener('click', resetEventHandler);
+  record.addEventListener('click', recordEventHandler);
+
+  document.body.addEventListener('keypress', (e) => {
+    if (e.key === 's') {
+      startStopEventHandler();
+    } else if (e.key === 'r')  {
+      resetEventHandler();
+    } else if (e.key === 't') {
+      recordEventHandler();
+    }
   });
 
 
